@@ -23,6 +23,12 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to appointment_url(Appointment.last)
   end
 
+  test "should have 'submitted' attribute be false by default" do 
+    assert(Appointment.last.submitted == false && !Appointment.last.submitted.nil?) do
+      post appointments_url
+    end
+  end
+
   test "should show appointment" do
     get appointment_url(@appointment)
     assert_response :success
