@@ -3,8 +3,8 @@
 Car Repair Appointment
 
 * Version Info
-Ruby 2.7.2
-Rails 6.0.3.4
+    * Ruby 2.7.2
+    * Rails 6.0.3.4
 
 * System dependencies
 
