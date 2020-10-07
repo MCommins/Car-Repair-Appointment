@@ -24,14 +24,14 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = Appointment.new
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        format.html { render :new }
         format.json { render :show, status: :created, location: @appointment }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
