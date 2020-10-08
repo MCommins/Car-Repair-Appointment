@@ -6,37 +6,3 @@
   <%= text_field_tag(:email_address) %>
   <%= submit_tag("Submit") %>
 <% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Year</th>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Repair required</th>
-      <th>Date time</th>
-      <th>Submitted</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @appointments.each do |appointment| %>
-      <tr>
-        <td><%= appointment.first_name %></td>
-        <td><%= appointment.last_name %></td>
-        <td><%= appointment.year %></td>
-        <td><%= appointment.make %></td>
-        <td><%= appointment.model %></td>
-        <td><%= appointment.repair_required %></td>
-        <td><%= appointment.date_time %></td>
-        <td><%= appointment.submitted %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
