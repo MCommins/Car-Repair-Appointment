@@ -2,7 +2,6 @@ require "application_system_test_case"
 
 class AppointmentsTest < ApplicationSystemTestCase
   setup do
-    @appointment = appointments(:one)
     @user_email = "User@example.com"
   end
 
@@ -23,16 +22,17 @@ class AppointmentsTest < ApplicationSystemTestCase
   end
 
   test "updating an Appointment" do
+    app_one = appointments(:one)
     visit appointments_url
     click_on "Edit", match: :first
 
-    fill_in "Date time", with: @appointment.date_time
-    fill_in "First name", with: @appointment.first_name
-    fill_in "Last name", with: @appointment.last_name
-    fill_in "Make", with: @appointment.make
-    fill_in "Model", with: @appointment.model
-    fill_in "Repair required", with: @appointment.repair_required
-    fill_in "Year", with: @appointment.year
+    fill_in "Date time", with: app_one.date_time
+    fill_in "First name", with: app_one.first_name
+    fill_in "Last name", with: app_one.last_name
+    fill_in "Make", with: app_one.make
+    fill_in "Model", with: app_one.model
+    fill_in "Repair required", with: app_one.repair_required
+    fill_in "Year", with: app_one.year
     click_on "Submit Appointment"
 
     assert_text "Appointment was successfully submitted"

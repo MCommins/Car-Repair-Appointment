@@ -14,7 +14,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
+    
   end
 
   # GET /appointments/1/edit
@@ -24,11 +24,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = Appointment.new
+    @appointment = Appointment.new(appointment_params)
 
     respond_to do |format|
       if @appointment.save
-        format.html { render :new }
+        format.html { redirect_to new_appointment_url }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :index }
@@ -69,6 +69,10 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:first_name, :last_name, :year, :make, :model, :repair_required, :date_time, :submitted)
+      if params[:email_address]
+        nil
+      else 
+        params.require(:appointment).permit(:first_name, :last_name, :year, :make, :model, :repair_required, :date_time, :submitted)
+      end
     end
 end

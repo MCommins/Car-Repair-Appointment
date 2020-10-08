@@ -20,7 +20,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
       post appointments_url, params: { appointment: { date_time: @appointment.date_time, first_name: @appointment.first_name, last_name: @appointment.last_name, make: @appointment.make, model: @appointment.model, repair_required: @appointment.repair_required, submitted: @appointment.submitted, year: @appointment.year } }
     end
 
-    assert_redirected_to appointment_url(Appointment.last)
+    assert_redirected_to new_appointment_url
   end
 
   test "should show appointment" do
