@@ -72,7 +72,7 @@ class AppointmentsController < ApplicationController
       if params[:email_address]
         nil
       else 
-        params.require(:appointment).permit(:first_name, :last_name, :year, :make, :model, :repair_required, :date_time, :submitted)
+        params.require(:appointment).permit(:first_name, :last_name, :phone_number, :year, :make, :model, :repair_required, :date_time)
       end
     end
 end
