@@ -25,11 +25,13 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to new_appointment_url }
         format.json { render :show, status: :created, location: @appointment }
+        if params[:email_address]
+          AppointmentMailer.activation_email(email_address: params[:email_address], url: build_activation_url).deliver_now
+        end
       else
         format.html { render :index }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
@@ -41,7 +43,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     respond_to do |format|
-      params[:appointment][:submitted] = true;
+      #params[:appointment][:submitted] = true;
       if @appointment.update(appointment_params)
         format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
         format.json { render :show, status: :ok, location: @appointment }
@@ -75,5 +77,9 @@ class AppointmentsController < ApplicationController
       else 
         params.require(:appointment).permit(:first_name, :last_name, :phone_number, :year, :make, :model, :repair_required, :date_time)
       end
+    end
+
+    def build_activation_url
+      edit_appointment_activation_url(@appointment.id, email: params[:email_address])
     end
 end

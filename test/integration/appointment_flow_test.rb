@@ -4,6 +4,7 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
 	setup do
 		ActionMailer::Base.deliveries.clear
 		@user_email = "Test@example.com"
+		@app_one = appointments(:one)
 	end
 
   test "create and submit an appointment with an activation email" do
@@ -16,31 +17,21 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
 
   	assert_not appointment.submitted?
 
-  	get edit_appointment_activation_path("badtoken", @user_email)
+  	get edit_appointment_activation_path("badtoken", email: @user_email)
 
   	assert_redirected_to appointments_url
 
-  	get edit_appointment_activation_path(appointment.activation_token, "bademail")
+  	#get edit_appointment_activation_path(appointment.activation_token, "bademail")
 
-  	assert_redirected_to appointments_url
+  	#assert_redirected_to appointments_url
 
-  	get edit_appointment_activation_path(appointment.activation_token, @user_email)
+  	get edit_appointment_activation_path(appointment.id, email: @user_email)
 
   	follow_redirect!
 
-  	assert_template "edit"
+  	assert_template "appointments/edit"
 
-  	fill_in "First name", with: @app_one.first_name
-    fill_in "Last name", with: @app_one.last_name
-    fill_in "Phone number", with: @app_one.phone_number
-    fill_in "Year", with: @app_one.year
-    fill_in "Make", with: @app_one.make
-    fill_in "Model", with: @app_one.model
-    fill_in "Repair required", with: @app_one.repair_required
-    assert_text "Time"
-    click_on "Submit Appointment"
-
-    assert_text "Appointment was successfully submitted"
+  	patch appointment_url(appointment), params: { appointment: { phone_number: @app_one.phone_number, date_time: @app_one.date_time, first_name: @app_one.first_name, last_name: @app_one.last_name, make: @app_one.make, model: @app_one.model, repair_required: @app_one.repair_required, year: @app_one.year } }
 
     assert appointment.reload.submitted?
 

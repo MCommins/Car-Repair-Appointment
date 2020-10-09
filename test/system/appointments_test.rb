@@ -3,7 +3,6 @@ require "application_system_test_case"
 class AppointmentsTest < ApplicationSystemTestCase
   setup do
     @user_email = "User@example.com"
-    @app_one = appointments(:one)
   end
 
   test "visiting the index" do
@@ -34,15 +33,17 @@ class AppointmentsTest < ApplicationSystemTestCase
   end
 
   test "updating an Appointment" do
-    visit edit_appointment_url(id: @app_one.id)
+    app_one = appointments(:one)
 
-    fill_in "First name", with: @app_one.first_name
-    fill_in "Last name", with: @app_one.last_name
-    fill_in "Phone number", with: @app_one.phone_number
-    fill_in "Year", with: @app_one.year
-    fill_in "Make", with: @app_one.make
-    fill_in "Model", with: @app_one.model
-    fill_in "Repair required", with: @app_one.repair_required
+    visit edit_appointment_url(id: app_one.id)
+
+    fill_in "First name", with: app_one.first_name
+    fill_in "Last name", with: app_one.last_name
+    fill_in "Phone number", with: app_one.phone_number
+    fill_in "Year", with: app_one.year
+    fill_in "Make", with: app_one.make
+    fill_in "Model", with: app_one.model
+    fill_in "Repair required", with: app_one.repair_required
     assert_text "Time"
     click_on "Submit Appointment"
 
