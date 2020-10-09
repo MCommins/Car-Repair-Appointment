@@ -22,6 +22,17 @@ class AppointmentsTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
+  test "not creating Appointment with invalid email address" do
+    visit appointments_url
+
+    fill_in "Email Address", with: "ThisIsNotAnEmailAddress"
+
+    click_on "Submit"
+
+    assert_selector "p", text: "Appointment was successfully created. Check your email to submit appointment details.", count: 0
+
+  end
+
   test "updating an Appointment" do
     visit edit_appointment_url(id: @app_one.id)
 

@@ -2,7 +2,7 @@
 
 <h1>Create Appointment</h1>
 <%= form_tag do %>
-  <%= label_tag(:email_address, "Email Address:") %>
-  <%= text_field_tag(:email_address) %>
+  <%= label_tag :email_address, "Email Address:" %>
+  <%= email_field_tag :email_address, nil, required: true %>
   <%= submit_tag("Submit") %>
 <% end %>

@@ -7,7 +7,7 @@ class AppointmentMailerTest < ActionMailer::TestCase
 	end
 
 	# This should be split up into multiple tests, but having to use 
-	# 'deliver_later' to handle multiple emails took too long to run
+	# 'deliver_later' to handle multiple emails caused blocking
   test 'can send an activation email to a given email address' do
   	activation = AppointmentMailer.activation_email(email_address: @address, url: "http://localhost:3000/appointments/" + @app_one.id.to_s + "/edit")
 
