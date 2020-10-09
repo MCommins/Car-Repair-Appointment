@@ -4,6 +4,7 @@ one:
   first_name: MyString
   last_name: MyString
   year: 1
+  phone_number: MyString
   make: MyString
   model: MyString
   repair_required: MyString
@@ -11,11 +12,12 @@ one:
   submitted: false
 
 two:
-  first_name: MyString
-  last_name: MyString
-  year: 1
-  make: MyString
-  model: MyString
-  repair_required: MyString
-  date_time: 2020-10-07 11:38:51
+  first_name: MyOtherString
+  last_name: MyOtherString
+  year: 2
+  phone_number: MyOtherString
+  make: MyOtherString
+  model: MyOtherString
+  repair_required: MyOtherString
+  date_time: 2020-10-08 11:38:51
   submitted: false

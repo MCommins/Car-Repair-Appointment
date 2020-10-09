@@ -17,7 +17,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create appointment" do
     assert_difference('Appointment.count') do
-      post appointments_url, params: { appointment: { date_time: @appointment.date_time, first_name: @appointment.first_name, last_name: @appointment.last_name, make: @appointment.make, model: @appointment.model, repair_required: @appointment.repair_required, submitted: @appointment.submitted, year: @appointment.year } }
+      post appointments_url, params: { appointment: { date_time: @appointment.date_time, first_name: @appointment.first_name, last_name: @appointment.last_name, make: @appointment.make, model: @appointment.model, repair_required: @appointment.repair_required, year: @appointment.year } }
     end
 
     assert_redirected_to new_appointment_url
@@ -34,7 +34,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update appointment" do
-    patch appointment_url(@appointment), params: { appointment: { date_time: @appointment.date_time, first_name: @appointment.first_name, last_name: @appointment.last_name, make: @appointment.make, model: @appointment.model, repair_required: @appointment.repair_required, submitted: @appointment.submitted, year: @appointment.year } }
+    patch appointment_url(@appointment), params: { appointment: { date_time: @appointment.date_time, first_name: @appointment.first_name, last_name: @appointment.last_name, make: @appointment.make, model: @appointment.model, repair_required: @appointment.repair_required, year: @appointment.year } }
     assert_redirected_to appointment_url(@appointment)
   end
 
@@ -44,5 +44,10 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to appointments_url
+  end
+
+  test "should have submitted attribute be set to true after update" do
+    patch appointment_url(@appointment), params: { appointment: { date_time: @appointment.date_time, first_name: @appointment.first_name, last_name: @appointment.last_name, make: @appointment.make, model: @appointment.model, repair_required: @appointment.repair_required, year: @appointment.year } }
+    assert_equal Appointment.find(appointments(:one).id).submitted, true
   end
 end
