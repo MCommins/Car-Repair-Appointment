@@ -36,9 +36,17 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should get edit if not already submiited" do
+    assert !@appointment.submitted?
     get edit_appointment_url(@appointment)
     assert_response :success
+  end
+
+  test "should show if try to edit but already submiited" do
+    @appointment.update(submitted: true)
+    assert @appointment.reload.submitted?
+    get edit_appointment_url(@appointment)
+    assert_redirected_to appointment_url(@appointment)
   end
 
   test "should update appointment" do

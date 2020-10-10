@@ -20,6 +20,9 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+    if @appointment.submitted?
+      redirect_to appointment_path(@appointment)
+    end
   end
 
   # POST /appointments
