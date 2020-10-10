@@ -21,9 +21,9 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
 
   	assert_redirected_to appointments_url
 
-  	#get edit_appointment_activation_path(appointment.activation_token, "bademail")
+  	get edit_appointment_activation_path(appointment.id, "bademail")
 
-  	#assert_redirected_to appointments_url
+  	assert_redirected_to appointments_url
 
   	get edit_appointment_activation_path(appointment.id, email: @user_email)
 
@@ -34,6 +34,10 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
   	patch appointment_url(appointment), params: { appointment: { phone_number: @app_one.phone_number, date_time: @app_one.date_time, first_name: @app_one.first_name, last_name: @app_one.last_name, make: @app_one.make, model: @app_one.model, repair_required: @app_one.repair_required, year: @app_one.year } }
 
     assert appointment.reload.submitted?
+
+    get edit_appointment_activation_path(appointment.id, email: @user_email)
+
+    assert_redirected_to appointment_url(appointment)
 
   end
 end
