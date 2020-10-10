@@ -12,4 +12,9 @@ class AppointmentMailerPreview < ActionMailer::Preview
   	AppointmentMailer.success_email(email_address: 'Test@example.com')	
   end
 
+  def repair_appointment_email
+  	appointment = Appointment.new(first_name: "Jane", last_name: "Doe", phone_number: "###########", year: "2020", make: "Honda", model: "Civic", repair_required: "Door stuck", date_time: Time.zone.now)
+  	AppointmentMailer.repair_appointment_email(appointment: appointment, ip: '0.0.0.0')
+  end
+
 end

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= "First Name: " + @appointment.first_name =%></p>
+    <p><%= "Last Name: " + @appointment.last_name =%></p>
+    <p><%= "Phone Number: " + @appointment.phone_number =%></p>
+    <p><%= "Year: " + @appointment.year.to_s =%></p>
+    <p><%= "Make: " + @appointment.make =%></p>
+    <p><%= "Model: " + @appointment.model =%></p>
+    <p><%= "Repair Required: " + @appointment.repair_required =%></p>
+    <p><%= "Appointment Time: " + @appointment.date_time.to_s =%></p>
+    <p><%= "IP Address: " + @ip =%></p>
+  </body>
+</html>
