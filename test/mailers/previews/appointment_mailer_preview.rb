@@ -3,8 +3,12 @@ class AppointmentMailerPreview < ActionMailer::Preview
 
 	def activation_email
     email_address = 'Test@example.com'
-    appointment = Appointment.new(email_address: email_address)
-    appointment.save
+    if Appointment.last.nil?
+    	appointment = Appointment.new(email_address: email_address)
+    	appointment.save
+    else
+    	appointment = Appointment.last
+    end
     AppointmentMailer.activation_email(email_address: email_address, url: "http://localhost:3000/appointment_activations/" + appointment.id.to_s + "/edit?email=" + email_address)
   end
 
