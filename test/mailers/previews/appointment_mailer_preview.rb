@@ -7,4 +7,9 @@ class AppointmentMailerPreview < ActionMailer::Preview
     appointment.save
     AppointmentMailer.activation_email(email_address: email_address, url: "http://localhost:3000/appointment_activations/" + appointment.id.to_s + "/edit?email=" + email_address)
   end
+
+  def success_email
+  	AppointmentMailer.success_email(email_address: 'Test@example.com')	
+  end
+
 end
