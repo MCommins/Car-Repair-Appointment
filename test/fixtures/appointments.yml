@@ -1,0 +1,24 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  year: 1
+  phone_number: MyString
+  make: MyString
+  model: MyString
+  repair_required: MyString
+  date_time: 2020-10-07 11:38:51
+  email_address: Test@example.com
+  submitted: false
+
+unfilled:
+  first_name: 
+  last_name: 
+  year: 
+  phone_number: 
+  make: 
+  model: 
+  repair_required: 
+  date_time: 2020-10-08 11:38:51
+  submitted: false

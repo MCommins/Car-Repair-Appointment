@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+	Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  resources :appointments
+  resources :appointment_activations, only: [:edit]
+  root to: "appointments#index"
 end
