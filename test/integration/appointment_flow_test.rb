@@ -35,6 +35,8 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
 
     assert appointment.reload.submitted?
 
+    assert_redirected_to appointment_url(appointment)
+
     get edit_appointment_activation_path(appointment.id, email: @user_email)
 
     assert_redirected_to appointment_url(appointment)
