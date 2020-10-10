@@ -4,6 +4,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
+    @appointment = Appointment.new
     @appointments = Appointment.all
   end
 
@@ -29,8 +30,8 @@ class AppointmentsController < ApplicationController
       if @appointment.save
         format.html { redirect_to new_appointment_url }
         format.json { render :show, status: :created, location: @appointment }
-        if params[:email_address]
-          AppointmentMailer.activation_email(email_address: params[:email_address], url: build_activation_url).deliver_now
+        if params[:appointment][:email_address]
+          AppointmentMailer.activation_email(email_address: params[:appointment][:email_address], url: build_activation_url).deliver_now
         end
       else
         format.html { render :index }
@@ -72,11 +73,7 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      if params[:email_address]
-        nil
-      else 
-        params.require(:appointment).permit(:first_name, :last_name, :phone_number, :year, :make, :model, :repair_required, :date_time)
-      end
+        params.require(:appointment).permit(:first_name, :last_name, :phone_number, :year, :make, :model, :repair_required, :date_time, :email_address)
     end
 
     def build_activation_url

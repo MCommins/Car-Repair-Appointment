@@ -10,7 +10,7 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
   test "create and submit an appointment with an activation email" do
   	get appointments_path
   	assert_difference('Appointment.count', 1) do
-  		post appointments_path, params: { email_address: @user_email }
+  		post appointments_path, params: { appointment: { email_address: @user_email } }
   	end
   	assert_emails 1
   	appointment = Appointment.last

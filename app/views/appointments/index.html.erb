@@ -1,8 +1,61 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Create Appointment</h1>
-<%= form_tag do %>
-  <%= label_tag :email_address, "Email Address:" %>
-  <%= email_field_tag :email_address, nil, required: true %>
-  <%= submit_tag("Submit") %>
+
+<%= form_with(model: @appointment, local: true) do |form| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+        <% @appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email_address %>
+    <%= form.email_field :email_address, required: true %>
+  </div>
+
+    <div class="actions">
+    <%= form.submit "Submit" %>
+  </div>
 <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Year</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Repair required</th>
+      <th>Date time</th>
+      <th>Submitted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.first_name %></td>
+        <td><%= appointment.last_name %></td>
+        <td><%= appointment.year %></td>
+        <td><%= appointment.make %></td>
+        <td><%= appointment.model %></td>
+        <td><%= appointment.repair_required %></td>
+        <td><%= appointment.email_address %></td>
+        <td><%= appointment.date_time %></td>
+        <td><%= appointment.submitted %></td>
+        <td><%= link_to 'Show', appointment %></td>
+        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

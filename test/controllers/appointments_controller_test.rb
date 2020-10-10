@@ -25,7 +25,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create appointment with just an email address" do
     assert_difference('Appointment.count') do
-      post appointments_url, params: { email_address: "Text@example.com" }
+      post appointments_url, params: { appointment: { email_address: "Text@example.com" } }
     end
 
     assert_redirected_to new_appointment_url
