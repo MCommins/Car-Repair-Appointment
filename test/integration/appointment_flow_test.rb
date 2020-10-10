@@ -33,6 +33,8 @@ class AppointmentFlowTest < ActionDispatch::IntegrationTest
 
   	patch appointment_url(appointment), params: { appointment: { phone_number: @app_one.phone_number, date_time: @app_one.date_time, first_name: @app_one.first_name, last_name: @app_one.last_name, make: @app_one.make, model: @app_one.model, repair_required: @app_one.repair_required, year: @app_one.year } }
 
+  	assert_emails 2
+    
     assert appointment.reload.submitted?
 
     assert_redirected_to appointment_url(appointment)
