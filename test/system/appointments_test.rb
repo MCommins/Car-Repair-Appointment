@@ -13,7 +13,7 @@ class AppointmentsTest < ApplicationSystemTestCase
   test "creating an Appointment" do
     visit appointments_url
 
-    fill_in "Email Address", with: @user_email
+    fill_in "appointment_email_address", with: @user_email, visible: false
     
     click_on "Submit"
 
@@ -24,7 +24,7 @@ class AppointmentsTest < ApplicationSystemTestCase
   test "not creating Appointment with invalid email address" do
     visit appointments_url
 
-    fill_in "Email Address", with: "ThisIsNotAnEmailAddress"
+    fill_in "appointment_email_address", with: "ThisIsNotAnEmailAddress"
 
     click_on "Submit"
 
@@ -48,6 +48,16 @@ class AppointmentsTest < ApplicationSystemTestCase
     click_on "Submit Appointment"
 
     assert_text "Appointment was successfully submitted"
+  end
+
+  test "not updating an Appointment with unfilled first_name field" do
+    app_unfilled = appointments(:unfilled)
+    
+    visit edit_appointment_url(app_unfilled.id)
+
+    click_on "Submit Appointment"
+
+    assert_selector "p", text: "Appointment was successfully submitted", count: 0
   end
 
 end
