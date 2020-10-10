@@ -9,6 +9,7 @@ one:
   model: MyString
   repair_required: MyString
   date_time: 2020-10-07 11:38:51
+  email_address: Test@example.com
   submitted: false
 
 unfilled:

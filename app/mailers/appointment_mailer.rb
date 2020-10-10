@@ -9,13 +9,13 @@ class AppointmentMailer < ApplicationMailer
 	end
 
 	def success_email(email_address:)
-		mail(to:email_address, subject: 'Submission Success Email')
+		mail(to: email_address, subject: 'Submission Success Email')
 	end
 
 	def repair_appointment_email(appointment:, ip:)
 		@appointment = appointment
 		@ip = ip
-		mail(to:@@appointment_receiver_email, subject: 'Car Repair Appointment Email')
+		mail(to: @@appointment_receiver_email, subject: 'Car Repair Appointment Email')
 	end
 
 	def self.host_email

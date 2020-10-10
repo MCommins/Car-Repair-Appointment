@@ -15,4 +15,12 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label "Email Address" %>
+    <%= form.email_field :email_address, required: true %>
+  </div>
+
+    <div class="actions">
+    <%= form.submit "Submit" %>
+  </div>
 <% end %>
