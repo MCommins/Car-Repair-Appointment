@@ -1,6 +1,4 @@
-# README
-
-Car Repair Appointment
+## Car Repair Appointment
 A Ruby on rails app that creates car repair appointments, stores them in a SQLite database, and communicates with users through emails.
 
 ##### Prerequisites
